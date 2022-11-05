@@ -70,10 +70,12 @@
             currencyInputElement.value = currencyOutputLast
         }
     })
-
-    formElement.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const result = setResult(currencyOutputElement.value);
-        resultElement.innerHTML = `${result.toFixed(2)}${currencyChar}`;
-    })
+    const init = () => {
+        formElement.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const result = setResult(currencyOutputElement.value);
+            resultElement.innerHTML = `${result.toFixed(2)}${currencyChar}`;
+        })
+    }
+    init();
 }
