@@ -1,0 +1,8 @@
+.backgroundImage {
+    background-image: url("../images/waluta.png");
+    overflow: auto;
+    resize: both;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
