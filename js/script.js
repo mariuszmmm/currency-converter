@@ -71,6 +71,7 @@
         }
     })
     const init = () => {
+        recordCorrectRates();
         formElement.addEventListener("submit", (event) => {
             event.preventDefault();
             const result = setResult(currencyOutputElement.value);
