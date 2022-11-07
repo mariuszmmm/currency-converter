@@ -1,8 +1,9 @@
 # **Currency converter**
 #
-Simple currency converter from PLN, EUR, USD, GBP.
+
+ Simple currency converter from PLN, EUR, USD, GBP.
  Converts currencies to both sides.
-  Currency rates are assigned by default but can be changed.*
+ Currency rates are assigned by default but can be changed.*
 
 https://mariuszmmm.github.io/currency-converter/
 
