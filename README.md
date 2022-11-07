@@ -4,7 +4,7 @@
  Converts currencies to both sides.
  Currency rates are assigned by default but can be changed.
 
- https://mariuszmmm.github.io/currency-converter/
+ Check it out:  https://mariuszmmm.github.io/currency-converter/
 
 # ![Currency converter](/images/animation.gif)
 
