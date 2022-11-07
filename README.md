@@ -4,7 +4,7 @@
 Simple currency converter from PLN, EUR, USD, GBP. Converts currencies to both sides.  
 Currency rates are assigned by default but can be changed.  
 #
- Check it out:     -->  https://mariuszmmm.github.io/currency-converter/   <--
+ Check it out:     -->    https://mariuszmmm.github.io/currency-converter/     <--
 #
 ![Currency converter](/images/animation.gif)
 
@@ -12,7 +12,6 @@ Currency rates are assigned by default but can be changed.
 
 ## Technologies Used
   
-
 - Javascript ES6
 
 - HTML 5
