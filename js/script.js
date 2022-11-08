@@ -28,12 +28,12 @@
     }
 
     const calculateResult = (convertToCurrency) => {
-        const rateEUR_Element = document.querySelector(".js-rateEUR");
-        const rateUSD_Element = document.querySelector(".js-rateUSD");
-        const rateGBP_Element = document.querySelector(".js-rateGBP");
-        const rateEUR = rateEUR_Element.value
-        const rateUSD = rateUSD_Element.value
-        const rateGBP = rateGBP_Element.value
+        const rateEURElement = document.querySelector(".js-rateEUR");
+        const rateUSDElement = document.querySelector(".js-rateUSD");
+        const rateGBPElement = document.querySelector(".js-rateGBP");
+        const rateEUR = rateEURElement.value
+        const rateUSD = rateUSDElement.value
+        const rateGBP = rateGBPElement.value
         const sumElement = document.querySelector(".js-sum");
         const amount = +sumElement.value;
         const rateInput = rateSelectionInputCurrency(rateEUR, rateUSD, rateGBP);
