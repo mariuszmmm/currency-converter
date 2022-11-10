@@ -1,4 +1,9 @@
-{
+{ 
+    const currencyInputElement = document.querySelector(".js-currencyInput");
+    const currencyOutputElement = document.querySelector(".js-currencyOutput");
+    let currencyInputLast = currencyInputElement.value
+    let currencyOutputLast = currencyOutputElement.value
+
     const symbolSelection = () => {
         switch (convertToCurrency) {
             case "PLN":
@@ -13,7 +18,6 @@
     }
 
     const rateSelectionInputCurrency = (rateEUR, rateUSD, rateGBP) => {
-        const currencyInputElement = document.querySelector(".js-currencyInput");
         convertFromCurrency = currencyInputElement.value
         switch (convertFromCurrency) {
             case "PLN":
@@ -59,14 +63,33 @@
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        const currencyOutputElement = document.querySelector(".js-currencyOutput");
         convertToCurrency = currencyOutputElement.value
         displayResult(convertToCurrency);
+    }
+
+    const saveDifferentRates = () => {
+        currencyInputLast = currencyInputElement.value;
+        currencyOutputLast = currencyOutputElement.value;
     }
 
     const eventOnForm = (event) => {
         const resultElement = document.querySelector(".js-result");
         resultElement.innerHTML = ("");
+
+        if (currencyInputElement.value !== currencyOutputElement.value) {
+            saveDifferentRates();
+        }
+
+        if (currencyInputElement.value === currencyOutputElement.value) {
+            if (currencyInputElement.value === currencyOutputLast) {
+                currencyOutputElement.value = currencyInputLast;
+                saveDifferentRates();
+            }
+            else {
+                currencyInputElement.value = currencyOutputLast;
+                saveDifferentRates();
+            }
+        }
     }
 
     const init = () => {
