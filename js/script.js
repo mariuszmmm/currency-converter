@@ -1,10 +1,5 @@
-{ 
-    const currencyInputElement = document.querySelector(".js-currencyInput");
-    const currencyOutputElement = document.querySelector(".js-currencyOutput");
-    let currencyInputLast = currencyInputElement.value
-    let currencyOutputLast = currencyOutputElement.value
-
-    const symbolSelection = () => {
+{
+    const symbolSelection = (convertToCurrency) => {
         switch (convertToCurrency) {
             case "PLN":
                 return " zł";
@@ -17,7 +12,7 @@
         }
     }
 
-    const rateSelectionInputCurrency = (rateEUR, rateUSD, rateGBP) => {
+    const rateSelectionInputCurrency = (rateEUR, rateUSD, rateGBP, currencyInputElement) => {
         convertFromCurrency = currencyInputElement.value
         switch (convertFromCurrency) {
             case "PLN":
@@ -31,7 +26,7 @@
         }
     }
 
-    const calculateResult = (convertToCurrency) => {
+    const calculateResult = (convertToCurrency, currencyInputElement) => {
         const rateEURElement = document.querySelector(".js-rateEUR");
         const rateUSDElement = document.querySelector(".js-rateUSD");
         const rateGBPElement = document.querySelector(".js-rateGBP");
@@ -40,7 +35,7 @@
         const rateGBP = rateGBPElement.value
         const sumElement = document.querySelector(".js-sum");
         const amount = +sumElement.value;
-        const rateInput = rateSelectionInputCurrency(rateEUR, rateUSD, rateGBP);
+        const rateInput = rateSelectionInputCurrency(rateEUR, rateUSD, rateGBP, currencyInputElement);
 
         switch (convertToCurrency) {
             case "PLN":
@@ -54,48 +49,41 @@
         }
     }
 
-    const displayResult = (convertToCurrency) => {
+    const displayResult = (convertToCurrency, currencyInputElement) => {
         const resultElement = document.querySelector(".js-result");
-        const result = calculateResult(convertToCurrency);
+        const result = calculateResult(convertToCurrency, currencyInputElement);
         const symbolCurrency = symbolSelection(convertToCurrency);
         resultElement.innerHTML = `${result.toFixed(2)}${symbolCurrency}`;
     }
 
-    const onFormSubmit = (event) => {
+    const onFormSubmit = (event, currencyInputElement, currencyOutputElement) => {
         event.preventDefault();
         convertToCurrency = currencyOutputElement.value
-        displayResult(convertToCurrency);
-    }
-
-    const saveDifferentRates = () => {
-        currencyInputLast = currencyInputElement.value;
-        currencyOutputLast = currencyOutputElement.value;
-    }
-
-    const eventOnForm = (event) => {
-        const resultElement = document.querySelector(".js-result");
-        resultElement.innerHTML = ("");
-
-        if (currencyInputElement.value !== currencyOutputElement.value) {
-            saveDifferentRates();
-        }
-
-        if (currencyInputElement.value === currencyOutputElement.value) {
-            if (currencyInputElement.value === currencyOutputLast) {
-                currencyOutputElement.value = currencyInputLast;
-                saveDifferentRates();
-            }
-            else {
-                currencyInputElement.value = currencyOutputLast;
-                saveDifferentRates();
-            }
-        }
+        displayResult(convertToCurrency, currencyInputElement);
     }
 
     const init = () => {
         const formElement = document.querySelector(".js-form");
-        formElement.addEventListener("input", eventOnForm)
-        formElement.addEventListener("submit", onFormSubmit);
+        const currencyInputElement = document.querySelector(".js-currencyInput");
+        const currencyOutputElement = document.querySelector(".js-currencyOutput");
+        let currencyInputLast = currencyInputElement.value
+        let currencyOutputLast = currencyOutputElement.value
+
+        formElement.addEventListener("submit", (event) => { onFormSubmit(event, currencyInputElement, currencyOutputElement) });
+        formElement.addEventListener("input", () => {
+            const resultElement = document.querySelector(".js-result");
+            resultElement.innerHTML = ("");
+            if (currencyInputElement.value === currencyOutputElement.value && currencyOutputLast) {
+                currencyOutputElement.value = currencyInputLast
+            }
+            if (currencyInputElement.value === currencyOutputElement.value && currencyInputLast) {
+                currencyInputElement.value = currencyOutputLast
+            }
+            if (currencyInputElement.value !== currencyOutputElement.value) {
+                currencyInputLast = currencyInputElement.value
+                currencyOutputLast = currencyOutputElement.value
+            }
+        })
     }
     init();
 }
