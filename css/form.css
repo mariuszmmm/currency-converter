@@ -67,6 +67,7 @@
 }
 
 .form__button:hover {
+    cursor: pointer;
     background-color: hsl(210, 65%, 30%);
 }
 
